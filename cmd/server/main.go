@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/MelvynAndrew99/DryJokes/internal/handlers"
+	"github.com/MelvynAndrew99/JokeStack/internal/handlers"
 )
 
 func main() {

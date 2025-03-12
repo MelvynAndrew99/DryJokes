@@ -1,4 +1,4 @@
-module github.com/MelvynAndrew99/DryJokes
+module github.com/MelvynAndrew99/JokeStack
 
 go 1.22.3
 
