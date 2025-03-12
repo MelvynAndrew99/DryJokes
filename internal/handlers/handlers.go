@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/melvynandrew99/DryJokes/internal/jokes"
+	"github.com/MelvynAndrew99/DryJokes/internal/jokes"
 
 	"github.com/go-chi/chi"
 )
