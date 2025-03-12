@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Go (optional, only if you need to build/test the Go code)
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'  # Adjust to your Go version
+
+      # Build and test the Go app (optional, for validation)
+      - name: Build and Test
+        run: |
+          go build -v ./cmd/server/
+          go test ./...
+
+      # Copy static files to a deployment directory
+      - name: Prepare static assets
+        run: |
+          mkdir -p docs
+          cp -r static/* docs/
+
+      # Deploy to GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages  # Deploys to gh-pages branch
